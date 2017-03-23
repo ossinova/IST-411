@@ -50,10 +50,10 @@ public class UsersResource {
    // @Path("/users/allUsers")
     @Produces(MediaType.TEXT_HTML)
     public File getHTML() throws FileNotFoundException, IOException {
-    
-    FileReader fr = new FileReader(file);
-    fr.close();
-        return file;
+     FileReader fr = new FileReader(file);
+     fr.close();
+        
+     return file;
     }
 
     /**
@@ -84,9 +84,11 @@ public class UsersResource {
     
     @DELETE
     @Path("/users/deleteUsers")
-     @Consumes(MediaType.TEXT_HTML)
+    @Consumes(MediaType.TEXT_HTML)
     public File deleteHTML(String content) {
+     
         
+      
      return file;
     } 
 }
