@@ -5,6 +5,11 @@
  */
 package users;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -37,33 +42,51 @@ public class UsersResource {
      * Retrieves representation of an instance of users.UsersResource
      * @return an instance of java.lang.String
      */
+    
+    File file = new File("users.txt");
+    
+    
     @GET
-    @Path("/users/allUsers")
+   // @Path("/users/allUsers")
     @Produces(MediaType.TEXT_HTML)
-    public String getHTML() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    public File getHTML() throws FileNotFoundException, IOException {
+    
+    FileReader fr = new FileReader(file);
+    fr.close();
+        return file;
     }
 
     /**
      * PUT method for updating or creating an instance of UsersResource
      * @param content representation for the resource
+     * @return 
+     * @throws java.io.IOException
      */
     @PUT
     @Path("/users/updateUsers")
     @Consumes(MediaType.TEXT_HTML)
-    public void putHTML(String content) {
-        
+    public File putHTML(String content) throws IOException {
+      FileWriter writer = new FileWriter(file); 
+      writer.write(content + "\n"); 
+      writer.close();
+      
+      return file;
     }
     
     @POST
     @Path("/users/createUsers")
     @Consumes(MediaType.TEXT_HTML)
-    public void postHTML(String content) {
-        
+    public File postHTML(String content) throws IOException {
+     file.createNewFile();
+      
+     return file;
     }
     
     @DELETE
     @Path("/users/deleteUsers")
-    
+     @Consumes(MediaType.TEXT_HTML)
+    public File deleteHTML(String content) {
+        
+     return file;
+    } 
 }
