@@ -8,8 +8,10 @@ package users;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
@@ -36,8 +38,9 @@ public class UsersResource {
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
+    @Path("/users/allUsers")
+    @Produces(MediaType.TEXT_HTML)
+    public String getHTML() {
         //TODO return proper representation object
         throw new UnsupportedOperationException();
     }
@@ -47,7 +50,20 @@ public class UsersResource {
      * @param content representation for the resource
      */
     @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    @Path("/users/updateUsers")
+    @Consumes(MediaType.TEXT_HTML)
+    public void putHTML(String content) {
+        
     }
+    
+    @POST
+    @Path("/users/createUsers")
+    @Consumes(MediaType.TEXT_HTML)
+    public void postHTML(String content) {
+        
+    }
+    
+    @DELETE
+    @Path("/users/deleteUsers")
+    
 }
