@@ -52,7 +52,10 @@ public class UsersResource {
    // @Path("/users/allUsers")
     @Produces(MediaType.TEXT_HTML)
     public File getHTML() throws FileNotFoundException, IOException {
+     
+        
      FileReader fr = new FileReader(file);
+     
      fr.close();
         
      return file;
@@ -68,8 +71,8 @@ public class UsersResource {
     @Path("/users/updateUsers")
     @Consumes(MediaType.TEXT_HTML)
     public File putHTML(String content) throws IOException {
-      FileWriter writer = new FileWriter(file); 
-      writer.write(content + "\n"); 
+      FileWriter writer = new FileWriter(file, true); 
+      writer.write(content + "<br>"); 
       writer.close();
       
       return file;
@@ -78,8 +81,12 @@ public class UsersResource {
     @POST
     @Path("/users/createUsers")
     @Consumes(MediaType.TEXT_HTML)
-    public File postHTML(String content) throws IOException {
-     file.createNewFile();
+    public File postHTML() throws IOException {
+      file.createNewFile();
+      FileWriter writer = new FileWriter(file, false); 
+      writer.write("John Doe <br>" + "Joanna Doe <br>" + "Eric Ericsson <br>"); 
+      writer.close();
+        
       
      return file;
     }
@@ -87,10 +94,12 @@ public class UsersResource {
     @DELETE
     @Path("/users/deleteUsers")
     @Consumes(MediaType.TEXT_HTML)
-    public File deleteHTML(String content) {
+    public File deleteHTML() throws IOException {
+      FileWriter writer = new FileWriter(file, false); 
+      writer.write(""); 
+      writer.close(); 
+       
+      return file;
      
-        
-      
-     return file;
     } 
 }
