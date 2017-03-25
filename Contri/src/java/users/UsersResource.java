@@ -28,7 +28,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author OscarDyremyhr
  */
-
+@Path("Users")
 public class UsersResource {
 
     @Context
@@ -81,10 +81,10 @@ public class UsersResource {
     @POST
     @Path("createUsers")
     @Consumes(MediaType.TEXT_HTML)
-    public File postHTML() throws IOException {
+    public File postHTML(String name) throws IOException {
       file.createNewFile();
       FileWriter writer = new FileWriter(file, false); 
-      writer.write("John Doe <br>" + "Joanna Doe <br>" + "Eric Ericsson <br>"); 
+      writer.write(name + "<br>"); 
       writer.close();
         
       
