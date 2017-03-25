@@ -28,7 +28,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author OscarDyremyhr
  */
-@Path("users")
+
 public class UsersResource {
 
     @Context
@@ -68,7 +68,7 @@ public class UsersResource {
      * @throws java.io.IOException
      */
     @PUT
-    @Path("/users/updateUsers")
+    @Path("updateUsers")
     @Consumes(MediaType.TEXT_HTML)
     public File putHTML(String content) throws IOException {
       FileWriter writer = new FileWriter(file, true); 
@@ -79,7 +79,7 @@ public class UsersResource {
     }
     
     @POST
-    @Path("/users/createUsers")
+    @Path("createUsers")
     @Consumes(MediaType.TEXT_HTML)
     public File postHTML() throws IOException {
       file.createNewFile();
@@ -92,14 +92,9 @@ public class UsersResource {
     }
     
     @DELETE
-    @Path("/users/deleteUsers")
+    @Path("deleteUsers")
     @Consumes(MediaType.TEXT_HTML)
-    public File deleteHTML() throws IOException {
-      FileWriter writer = new FileWriter(file, false); 
-      writer.write(""); 
-      writer.close(); 
-       
-      return file;
+    public void deleteHTML() throws IOException {
      
     } 
 }
